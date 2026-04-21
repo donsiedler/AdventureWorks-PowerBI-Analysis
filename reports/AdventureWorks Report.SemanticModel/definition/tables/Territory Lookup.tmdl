@@ -1,11 +1,13 @@
 table 'Territory Lookup'
+	excludeFromModelRefresh
 	lineageTag: 8e6aab78-aa08-46be-8197-0c21b89371a4
 
 	column SalesTerritoryKey
 		dataType: int64
+		isKey
 		formatString: 0
 		lineageTag: 9fd780ec-e83a-4e3e-b375-e86601ad3cc0
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: SalesTerritoryKey
 
 		annotation SummarizationSetBy = Automatic
@@ -21,6 +23,7 @@ table 'Territory Lookup'
 	column Country
 		dataType: string
 		lineageTag: 1395d97f-3679-4163-93e9-9ecfdb791e24
+		dataCategory: Country
 		summarizeBy: none
 		sourceColumn: Country
 
@@ -29,16 +32,32 @@ table 'Territory Lookup'
 	column Continent
 		dataType: string
 		lineageTag: cccc784a-9cb8-4970-aa11-8dccbb95ab31
+		dataCategory: Continent
 		summarizeBy: none
 		sourceColumn: Continent
 
 		annotation SummarizationSetBy = Automatic
 
+	hierarchy 'Territory Hierarchy'
+		lineageTag: afd9865d-9fe7-4bdd-9da7-d00723ad8c3a
+
+		level Continent
+			lineageTag: e05b4ee4-ce0d-486f-8c54-d0ba76936738
+			column: Continent
+
+		level Country
+			lineageTag: 3b4c5a7d-aa76-4d71-a456-d1b024f2e5e1
+			column: Country
+
+		level Region
+			lineageTag: 0e3ac860-53e3-4eec-b61b-e444a58a6d13
+			column: Region
+
 	partition 'Territory Lookup' = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\Artur\Documents\workspace\Power BI\AdventureWorks Raw Data\AdventureWorks Territory Lookup.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\Artur\Documents\workspace\Power BI\AdvendureWorks Project\raw data\AdventureWorks Territory Lookup.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SalesTerritoryKey", Int64.Type}, {"Region", type text}, {"Country", type text}, {"Continent", type text}})
 				in

@@ -1,0 +1,101 @@
+expression 'Largest Asset Managment Firms' =
+		let
+		    Source = Web.BrowserContents("https://en.wikipedia.org/wiki/List_of_asset_management_firms"),
+		    #"Extracted Table From Html" = Html.Table(Source, {{"Column1", "TABLE.sortable.wikitable > * > TR > :nth-child(1)"}, {"Column2", "TABLE.sortable.wikitable > * > TR > :nth-child(2)"}, {"Column3", "TABLE.sortable.wikitable > * > TR > :nth-child(3)"}, {"Column4", "TABLE.sortable.wikitable > * > TR > :nth-child(4)"}}, [RowSelector="TABLE.sortable.wikitable > * > TR"]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Extracted Table From Html",{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Firm/company", type text}, {"AUM in 2024[2]", type text}, {"AUM in 2025[3]", type text}, {"Country", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: d0e984c8-179d-4cd1-a6db-03151f159eff
+	queryGroup: 'Demo queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 157c34b1-4f27-458c-b768-bec962bd9e3b
+	queryGroup: 'Transform File from Sales Data\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File' =
+		let
+		    Source = Csv.Document(Parameter1,[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 64351934-79ab-4f21-a884-243d37746267
+	queryGroup: 'Transform File from Sales Data'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File' =
+		let
+		    Source = Folder.Files("C:\Users\Artur\Documents\workspace\Power BI\AdvendureWorks Project\raw data\Sales Data"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: ad3c232d-d3a1-451f-b614-b1229e0b2649
+	queryGroup: 'Transform File from Sales Data\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1 as binary) => let
+		    Source = Csv.Document(Parameter1,[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: f8eb422c-e5be-4ad2-8bb7-933b3aec295f
+	queryGroup: 'Transform File from Sales Data\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression 'Product Category Sales (Unpivot Demo)' =
+		let
+		    Source = Csv.Document(File.Contents("C:\Users\Artur\Documents\workspace\Power BI\AdvendureWorks Project\raw data\Product Category Sales (Unpivot Demo).csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Product Category", type text}, {"North Region", Int64.Type}, {"Central Region", Int64.Type}, {"South Region", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: aad64875-3c2d-4469-b7c6-f18d71adbb85
+	queryGroup: 'Demo queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Rolling Calendar' =
+		let
+		    Source = #date(2026, 1, 1),
+		    Custom1 = List.Dates(
+		    Source,
+		    Number.From(DateTime.LocalNow()) - Number.From(Source),
+		    #duration(1, 0, 0, 0)
+		    ),
+		    #"Converted to Table" = Table.FromList(Custom1, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Date"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: b96fc878-f180-4e98-a1d7-754aa07daa80
+	queryGroup: 'Demo queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

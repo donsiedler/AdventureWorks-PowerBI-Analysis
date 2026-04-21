@@ -1,0 +1,223 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "f728b40102a80bd61839",
+  "position": {
+    "x": 9.9748110831234253,
+    "y": 0,
+    "z": 0,
+    "height": 458.84130982367753,
+    "width": 457.93450881612085,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar Lookup"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Start of Year"
+                }
+              },
+              "queryRef": "Calendar Lookup.Date Hierarchy.Start of Year",
+              "nativeQueryRef": "Date Hierarchy Start of Year",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar Lookup"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Start of Month"
+                }
+              },
+              "queryRef": "Calendar Lookup.Date Hierarchy.Start of Month",
+              "nativeQueryRef": "Date Hierarchy Start of Month",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar Lookup"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Start of Week"
+                }
+              },
+              "queryRef": "Calendar Lookup.Date Hierarchy.Start of Week",
+              "nativeQueryRef": "Date Hierarchy Start of Week",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendar Lookup"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Date"
+                }
+              },
+              "queryRef": "Calendar Lookup.Date Hierarchy.Date",
+              "nativeQueryRef": "Date Hierarchy Date",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Sales Data"
+                        }
+                      },
+                      "Property": "OrderQuantity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Sales Data.OrderQuantity)",
+              "nativeQueryRef": "Sum of OrderQuantity"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Returns Data"
+                        }
+                      },
+                      "Property": "ReturnQuantity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Returns Data.ReturnQuantity)",
+              "nativeQueryRef": "Sum of ReturnQuantity"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Calendar Lookup.Date Hierarchy.Start of Year"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Calendar Lookup.Date Hierarchy.Start of Month"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "Calendar Lookup.Date Hierarchy.Start of Week"
+            ],
+            "isCollapsed": true
+          },
+          {
+            "queryRefs": [
+              "Calendar Lookup.Date Hierarchy.Date"
+            ],
+            "isCollapsed": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6eef5f7a800a1e64299a",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Sales Data"
+                  }
+                },
+                "Property": "OrderQuantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bdc2322ac8406710b08e",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Returns Data"
+                  }
+                },
+                "Property": "ReturnQuantity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
