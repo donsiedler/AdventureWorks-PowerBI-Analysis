@@ -113,6 +113,34 @@ table 'Product Lookup'
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	column 'Price Point' =
+			
+			SWITCH(
+			    TRUE(),
+			    'Product Lookup'[ProductPrice] > 500, "High",
+			    'Product Lookup'[ProductPrice] > 100, "Mid-Range",
+			    "Low"
+			)
+		lineageTag: ee4340aa-55ea-4634-a6b1-b888985086bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Category' =
+			
+			LEFT(
+			    'Product Lookup'[ProductSKU],
+			    SEARCH(
+			        "-",
+			        'Product Lookup'[ProductSKU]
+			    )
+			    - 1
+			)
+		lineageTag: f4d48c1a-e518-4c57-ab3a-8d6050dc8e7a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Product Lookup' = m
 		mode: import
 		source =

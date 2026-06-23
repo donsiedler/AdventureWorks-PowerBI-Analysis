@@ -20,7 +20,7 @@ queryGroup 'Transform File from Sales Data\Helper Queries'
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Territory Lookup","Product Lookup","Product Categories Lookup","Product Subcategories Lookup","Largest Asset Managment Firms","Customer Lookup","Calendar Lookup","Rolling Calendar","Product Category Sales (Unpivot Demo)","Sales Data","Parameter1","Transform Sample File","Sample File","Transform File","Returns Data"]
+annotation PBI_QueryOrder = ["Territory Lookup","Product Lookup","Product Categories Lookup","Product Subcategories Lookup","Largest Asset Managment Firms","Customer Lookup","Calendar Lookup","Rolling Calendar","Product Category Sales (Unpivot Demo)","Sales Data","Parameter1","Transform Sample File","Sample File","Transform File","Returns Data","Measure Table"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -32,6 +32,7 @@ ref table 'Customer Lookup'
 ref table 'Calendar Lookup'
 ref table 'Sales Data'
 ref table 'Returns Data'
+ref table 'Measure Table'
 
 ref cultureInfo en-US
 

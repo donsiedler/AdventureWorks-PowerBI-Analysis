@@ -92,6 +92,66 @@ table 'Calendar Lookup'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Month Number (DAX)' =
+			
+			SWITCH(
+			    'Calendar Lookup'[Month Name],
+			    "January", "1",
+			    "February", "2",
+			    "March", "3",
+			    "April", "4",
+			    "May", "5",
+			    "June", "6",
+			    "July", "7",
+			    "August", "8",
+			    "September", "9",
+			    "October", "10",
+			    "November", "11",
+			    "December", "12",
+			    "Other"
+			)
+		lineageTag: 6bd0138b-fedf-40be-972c-6fa9d26223d8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Short' =
+			
+			UPPER(
+			    LEFT(
+			        'Calendar Lookup'[Month Name],
+			        3
+			    )
+			)
+		lineageTag: 3aaae3b1-5bec-427e-9dab-9c8e30ee53fa
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week' =
+			
+			WEEKDAY(
+			    'Calendar Lookup'[Date],
+			    2
+			)
+		formatString: 0
+		lineageTag: 590f4f4e-1843-4bfa-a20f-e8e3e8dbd47f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekend =
+			
+			IF(
+			    'Calendar Lookup'[Day of Week] IN {6, 7},
+			    "Weekend",
+			    "Weekday"
+			)
+		lineageTag: a239919b-5aec-4d68-9a1b-127b60601c6e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	hierarchy 'Date Hierarchy'
 		lineageTag: e7de482c-c228-4e54-b82e-ca8faa13f576
 

@@ -91,6 +91,18 @@ table 'Sales Data'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Quantity Type' =
+			
+			IF(
+			    'Sales Data'[OrderQuantity] > 1,
+			    "Multiple Items",
+			    "Single Item"
+			)
+		lineageTag: 2e430a0d-6b03-4c0a-982f-ed5dc91f038f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Sales Data' = m
 		mode: import
 		source =

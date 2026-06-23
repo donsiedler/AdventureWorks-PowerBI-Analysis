@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "f728b40102a80bd61839",
   "position": {
-    "x": 9.9748110831234253,
-    "y": 0,
+    "x": 211.41141141141142,
+    "y": 74.954954954954957,
     "z": 0,
-    "height": 458.84130982367753,
-    "width": 457.93450881612085,
+    "height": 644.8048048048048,
+    "width": 251.7717717717718,
     "tabOrder": 0
   },
   "visual": {
@@ -17,83 +17,18 @@
           "projections": [
             {
               "field": {
-                "HierarchyLevel": {
+                "Column": {
                   "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar Lookup"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
+                    "SourceRef": {
+                      "Entity": "Calendar Lookup"
                     }
                   },
-                  "Level": "Start of Year"
+                  "Property": "Date"
                 }
               },
-              "queryRef": "Calendar Lookup.Date Hierarchy.Start of Year",
-              "nativeQueryRef": "Date Hierarchy Start of Year",
+              "queryRef": "Calendar Lookup.Date",
+              "nativeQueryRef": "Date",
               "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar Lookup"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Start of Month"
-                }
-              },
-              "queryRef": "Calendar Lookup.Date Hierarchy.Start of Month",
-              "nativeQueryRef": "Date Hierarchy Start of Month",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar Lookup"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Start of Week"
-                }
-              },
-              "queryRef": "Calendar Lookup.Date Hierarchy.Start of Week",
-              "nativeQueryRef": "Date Hierarchy Start of Week",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar Lookup"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Date"
-                }
-              },
-              "queryRef": "Calendar Lookup.Date Hierarchy.Date",
-              "nativeQueryRef": "Date Hierarchy Date",
-              "active": false
             }
           ]
         },
@@ -101,119 +36,74 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Sales Data"
-                        }
-                      },
-                      "Property": "OrderQuantity"
+                    "SourceRef": {
+                      "Entity": "Measure Table"
                     }
                   },
-                  "Function": 0
+                  "Property": "90-day Rolling Profit"
                 }
               },
-              "queryRef": "Sum(Sales Data.OrderQuantity)",
-              "nativeQueryRef": "Sum of OrderQuantity"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Returns Data"
-                        }
-                      },
-                      "Property": "ReturnQuantity"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(Returns Data.ReturnQuantity)",
-              "nativeQueryRef": "Sum of ReturnQuantity"
+              "queryRef": "Measure Table.90-day Rolling Profit",
+              "nativeQueryRef": "90-day Rolling Profit"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Calendar Lookup"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
-    "expansionStates": [
-      {
-        "roles": [
-          "Rows"
-        ],
-        "levels": [
-          {
-            "queryRefs": [
-              "Calendar Lookup.Date Hierarchy.Start of Year"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "Calendar Lookup.Date Hierarchy.Start of Month"
-            ],
-            "isCollapsed": true
-          },
-          {
-            "queryRefs": [
-              "Calendar Lookup.Date Hierarchy.Start of Week"
-            ],
-            "isCollapsed": true
-          },
-          {
-            "queryRefs": [
-              "Calendar Lookup.Date Hierarchy.Date"
-            ],
-            "isCollapsed": true
-          }
-        ],
-        "root": {}
-      }
-    ],
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "6eef5f7a800a1e64299a",
+        "name": "0565a7b87333ae23704b",
         "field": {
-          "Aggregation": {
+          "Column": {
             "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Sales Data"
-                  }
-                },
-                "Property": "OrderQuantity"
+              "SourceRef": {
+                "Entity": "Calendar Lookup"
               }
             },
-            "Function": 0
+            "Property": "Date"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
       },
       {
-        "name": "bdc2322ac8406710b08e",
+        "name": "e4007b5b7dbd01226d74",
         "field": {
-          "Aggregation": {
+          "Measure": {
             "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Returns Data"
-                  }
-                },
-                "Property": "ReturnQuantity"
+              "SourceRef": {
+                "Entity": "Measure Table"
               }
             },
-            "Function": 0
+            "Property": "90-day Rolling Profit"
           }
         },
         "type": "Advanced"

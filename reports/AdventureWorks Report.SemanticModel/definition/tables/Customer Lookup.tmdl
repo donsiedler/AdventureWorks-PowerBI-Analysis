@@ -38,7 +38,7 @@ table 'Customer Lookup'
 
 	column BirthDate
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 5d019b01-b49a-4fa8-b8c8-9efda51a7f87
 		summarizeBy: none
 		sourceColumn: BirthDate
@@ -126,6 +126,78 @@ table 'Customer Lookup'
 		lineageTag: 17a82a7e-55cc-42f0-ad65-0df14e6bec9d
 		summarizeBy: none
 		sourceColumn: Domain Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Parent ?' =
+			
+			IF(
+			    'Customer Lookup'[TotalChildren] > 0,
+			    "Yes",
+			    "No"
+			)
+		lineageTag: b6adcaf7-0b0e-44fc-93f9-ddda69c7113d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Priority' =
+			
+			IF(
+			    'Customer Lookup'[Is Parent ?] = "Yes" &&
+			    'Customer Lookup'[AnnualIncome] > 100000,
+			    "Priority",
+			    "Standard"
+			)
+		lineageTag: 45436707-6a5f-4799-8e59-4dcc6c049c58
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Income Level' =
+			
+			SWITCH(
+			    TRUE(),
+			    'Customer Lookup'[AnnualIncome] >= 150000, "Very High",
+			    'Customer Lookup'[AnnualIncome] >= 100000, "High",
+			    'Customer Lookup'[AnnualIncome] >= 50000, "Average",
+			    "Low"
+			)
+		lineageTag: d7e4fa7e-5186-4da1-ac61-3ab6a080c2f3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Education Category' =
+			
+			SWITCH(
+			    TRUE(),
+			    'Customer Lookup'[EducationLevel] = "High School" || 'Customer Lookup'[EducationLevel] = "Partial High School", "High School",
+			    'Customer Lookup'[EducationLevel] = "Bachelors" || 'Customer Lookup'[EducationLevel] = "Partial College", "Undergrad",
+			    'Customer Lookup'[EducationLevel] = "Graduate Degree", "Graduate",
+			    "Other"
+			)
+		lineageTag: 14343d80-75a7-42f3-90ad-cb70d0c50b56
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Full Name (CC)' =
+			
+			'Customer Lookup'[Prefix] & " " & 'Customer Lookup'[FirstName] & " " & 'Customer Lookup'[LastName]
+		lineageTag: 9f9d062c-e545-4701-8911-980b3e56921f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Birth Year' =
+			
+			YEAR(
+			    'Customer Lookup'[BirthDate]
+			)
+		formatString: 0
+		lineageTag: 3c4bfb5e-bedb-45eb-a777-8157f5899137
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
