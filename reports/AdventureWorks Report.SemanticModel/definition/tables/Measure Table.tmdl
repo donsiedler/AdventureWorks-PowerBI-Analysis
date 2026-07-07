@@ -340,6 +340,72 @@ table 'Measure Table'
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	measure 'Total Revenue (Customer Detail)' =
+			
+			IF(
+			    HASONEVALUE(
+			        'Customer Lookup'[CustomerKey]
+			    ),
+			    [Total Revenue],
+			    "-"
+			)
+		lineageTag: bdfe4080-f8ba-41f8-93fa-bb6e000978b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Orders (Customer Detail)' =
+			
+			IF(
+			    HASONEVALUE(
+			        'Customer Lookup'[CustomerKey]
+			    ),
+			    [Total Orders],
+			    "-"
+			)
+		formatString: 0
+		lineageTag: 5bb8022f-a633-4db1-9d66-c364d5dfdc9c
+
+	measure 'Order Target Gap' = [Total Orders] - [Order Target]
+		formatString: 0
+		lineageTag: 7991c154-e6ed-429a-bc08-d8e99a740d42
+
+	measure 'Revenue Target Gap' = [Total Revenue] - [Revenue Target]
+		formatString: #,0.###############\ "zł";-#,0.###############\ "zł";#,0.###############\ "zł"
+		lineageTag: d29a8045-0457-4e1e-8619-5d12ce8a2802
+
+		annotation PBI_FormatHint = {"currencyCulture":"pl-PL"}
+
+	measure 'Profit Target Gap' = [Total Profit] - [Profit Target]
+		formatString: #,0.###############\ "zł";-#,0.###############\ "zł";#,0.###############\ "zł"
+		lineageTag: f819bb43-da5b-4cde-84cf-066431cace0b
+
+		annotation PBI_FormatHint = {"currencyCulture":"pl-PL"}
+
+	measure 'Adjusted Price' = [Average Retail Price] * (1 + 'Price Adjustment (%)'[Price Adjustment % Value])
+		formatString: #,0.###############\ "zł";-#,0.###############\ "zł";#,0.###############\ "zł"
+		lineageTag: 877f599b-e99a-4a53-8660-1b6c8c6da0fb
+
+		annotation PBI_FormatHint = {"currencyCulture":"pl-PL"}
+
+	measure 'Adjusted Revenue' = ```
+			
+			SUMX(
+			    'Sales Data',
+			    'Sales Data'[OrderQuantity] * 
+			    [Adjusted Price]
+			)
+			```
+		formatString: #,0.###############\ "zł";-#,0.###############\ "zł";#,0.###############\ "zł"
+		lineageTag: 24a85b4b-f79c-4519-869e-6595aa4a1157
+
+		annotation PBI_FormatHint = {"currencyCulture":"pl-PL"}
+
+	measure 'Adjusted Profit' = [Adjusted Revenue] - [Total Cost]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: defa545d-d5b0-4321-864c-30d8bc760caf
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
 	partition 'Measure Table' = m
 		mode: import
 		source =

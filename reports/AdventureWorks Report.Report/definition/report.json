@@ -31,7 +31,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           },
@@ -57,6 +57,92 @@
           "type": "BaseTheme"
         }
       ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "AdventureWorks_Logo4736796607496021.png",
+          "path": "AdventureWorks_Logo4736796607496021.png",
+          "type": "Image"
+        },
+        {
+          "name": "Customer_Icon_Blue7053227467871526.png",
+          "path": "Customer_Icon_Blue7053227467871526.png",
+          "type": "Image"
+        },
+        {
+          "name": "Customer_Icon_Blue998523240189554.png",
+          "path": "Customer_Icon_Blue998523240189554.png",
+          "type": "Image"
+        },
+        {
+          "name": "Customer_Icon32318464173038564.png",
+          "path": "Customer_Icon32318464173038564.png",
+          "type": "Image"
+        },
+        {
+          "name": "Dashboard_Icon_Blue14384189424129734.png",
+          "path": "Dashboard_Icon_Blue14384189424129734.png",
+          "type": "Image"
+        },
+        {
+          "name": "Dashboard_Icon_Blue4029959077465075.png",
+          "path": "Dashboard_Icon_Blue4029959077465075.png",
+          "type": "Image"
+        },
+        {
+          "name": "Dashboard_Icon8567072714370547.png",
+          "path": "Dashboard_Icon8567072714370547.png",
+          "type": "Image"
+        },
+        {
+          "name": "Filter_Icon_Blue1777300874400386.png",
+          "path": "Filter_Icon_Blue1777300874400386.png",
+          "type": "Image"
+        },
+        {
+          "name": "Filter_Icon_Blue5253285098736774.png",
+          "path": "Filter_Icon_Blue5253285098736774.png",
+          "type": "Image"
+        },
+        {
+          "name": "Filter_Icon07132271975872784.png",
+          "path": "Filter_Icon07132271975872784.png",
+          "type": "Image"
+        },
+        {
+          "name": "Map_Icon_Blue11761836420045657.png",
+          "path": "Map_Icon_Blue11761836420045657.png",
+          "type": "Image"
+        },
+        {
+          "name": "Map_Icon_Blue5111170495649339.png",
+          "path": "Map_Icon_Blue5111170495649339.png",
+          "type": "Image"
+        },
+        {
+          "name": "Map_Icon4928906183309534.png",
+          "path": "Map_Icon4928906183309534.png",
+          "type": "Image"
+        },
+        {
+          "name": "Product_Icon_Blue34636400724176064.png",
+          "path": "Product_Icon_Blue34636400724176064.png",
+          "type": "Image"
+        },
+        {
+          "name": "Product_Icon_Blue760452570682952.png",
+          "path": "Product_Icon_Blue760452570682952.png",
+          "type": "Image"
+        },
+        {
+          "name": "Product_Icon1466324283684134.png",
+          "path": "Product_Icon1466324283684134.png",
+          "type": "Image"
+        }
+      ]
     }
   ],
   "settings": {
@@ -65,6 +151,9 @@
     "defaultDrillFilterOtherVisuals": true,
     "allowChangeFilterTypes": true,
     "useEnhancedTooltips": true,
-    "useDefaultAggregateDisplayName": true
+    "useDefaultAggregateDisplayName": true,
+    "queryLimitOption": "None",
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
   }
 }

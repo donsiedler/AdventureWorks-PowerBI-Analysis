@@ -2,6 +2,19 @@ table 'Customer Lookup'
 	excludeFromModelRefresh
 	lineageTag: 1f051db5-91d8-46f4-99fb-ff95c1bdebf8
 
+	measure 'Full Name (Customer Detail)' =
+			
+			IF(
+			    HASONEVALUE(
+			        'Customer Lookup'[CustomerKey]
+			    ),
+			    MAX(
+			        'Customer Lookup'[Full Name]
+			    ),
+			    "Multiple Customers"
+			)
+		lineageTag: 860b56a1-5ed2-4f02-bc85-a41721517949
+
 	column CustomerKey
 		dataType: int64
 		isKey

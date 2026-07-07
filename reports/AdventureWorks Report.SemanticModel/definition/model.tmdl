@@ -33,6 +33,13 @@ ref table 'Calendar Lookup'
 ref table 'Sales Data'
 ref table 'Returns Data'
 ref table 'Measure Table'
+ref table 'Price Adjustment (%)'
+ref table 'Product Metric Selection'
+ref table 'Customer Metric Selection'
+
+ref role Europe
+ref role 'North America'
+ref role Pacific
 
 ref cultureInfo en-US
 
