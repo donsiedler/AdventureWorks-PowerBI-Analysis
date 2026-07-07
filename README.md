@@ -30,6 +30,7 @@ The project leverages the modern **Power BI Project (.pbip)** format. This appro
 The dashboard is structured into **4 functional analytical perspectives**, accessible via an interactive, native navigation bar:
 
 ### 1. Executive Dashboard
+![Executive Dashboard](images/screenshots/exec_dashboard.png)
 Designed for high-level stakeholders to monitor total organizational growth and evaluate core operational channels.
 * **Top-Level Metrics:** Displays crucial financial indicators
 * **Revenue Trending:** A continuous timeline visualization mapping monthly sales trajectories alongside an overarching historical trend line.
@@ -38,12 +39,14 @@ Designed for high-level stakeholders to monitor total organizational growth and 
 * **Dynamic Highlights:** Conditional highlights surfacing the absolute highest-performing product category alongside the highest-risk product type based on returns.
 
 ### 2. Product Detail
+![Product Detail](images/screenshots/product_detail.png)
 An operational cockpit allowing product managers to isolate specific SKUs, track target achievements, and perform "What-If" scenario tracking.
 * **Target Gauges:** Visualizes real-time performance against predefined operational benchmarks for the selected product.
 * **What-If Scenario Simulation:** Incorporates a dynamic "Price Adjustment" slider parameter. This parameter drives a dual-line chart comparing historical *Total Profit* against a projected *Adjusted Profit* curve based on changing pricing strategies.
 * **Dynamic Metric Selection:** Features an interactive radio-button parameter selection module allowing users to toggle the bottom trend chart between key metrics: Orders, Revenue, Profit, Returns, or Return %
 
 ### 3. Customer Detail
+![Customer Detail](images/screenshots/customer_detail.png)
 Provides customer experience and marketing teams with granular intelligence on customer lifetime value, engagement frequency, and demographics.
 * **Customer Value KPIs:** Tracks high-level engagement through Unique Customers and an impactful average Revenue per Customer.
 * **Demographic Segmentation:** Dual donut charts filtering total transaction volumes by income and professional occupations.
@@ -52,6 +55,7 @@ Provides customer experience and marketing teams with granular intelligence on c
 * **Individual Customer Spotlight:** Dynamically surfaces the single highest-value client across the selected filter scope.
 
 ### 4. Map
+![Map](images/screenshots/map.png)
 A geographical mapping layer utilized by logistics and regional expansion teams to locate revenue clusters and market share density.
 * **Global Revenue Mapping:** Implements a dark-themed geographic canvas charting total sales distributions across key territories.
 * **Proportional Scaling:** Bubble markers adjust scale dynamically relative to regional financial performance.
